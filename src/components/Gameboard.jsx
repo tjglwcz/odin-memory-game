@@ -37,11 +37,11 @@ export default function Gameboard(props) {
   };
 
   return (
-    <>
-      <p>
-        Score: {currentScore} High Score: {highScore}
+    <div className="flex flex-col w-3/4 p-2">
+      <p className="text-center mb-8 text-xl">
+        Score: {currentScore} | High Score: {highScore}
       </p>
-      <div className="flex gap-4 flex-wrap w-3/4 p-4">
+      <div className="flex gap-4 flex-wrap justify-center p-4">
         {shuffledCardList.map((prop) => {
           return (
             <Card
@@ -53,6 +53,6 @@ export default function Gameboard(props) {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
