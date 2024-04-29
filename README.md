@@ -1,5 +1,7 @@
 # Memory Card Game (The Odin Project)
 
+**Live preview available [here](https://odin-memory-game-phi.vercel.app/).**
+
 ## Overview
 
 This project was built as a part of [The Odin Project](https://www.theodinproject.com/lessons/node-path-react-new-memory-card) curriculum. It is designed to incorporate the use of React useState and useEffect hooks.
