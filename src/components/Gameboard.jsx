@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./Card";
 export default function Gameboard(props) {
   const [clickedCards, setClickedCards] = useState([]);
+  const [shuffledCardList, setShuffledCardList] = useState([]);
   const [currentScore, setCurrentScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+
+  useEffect(() => {
+    shuffleCards();
+  }, [props.cardList]);
+
+  const shuffleCards = () => {
+    const shuffledList = [...props.cardList].sort(() => Math.random() - 0.5);
+    setShuffledCardList(shuffledList);
+  };
 
   const handleClick = (name) => {
     if (clickedCards.includes(name)) {
@@ -16,13 +26,16 @@ export default function Gameboard(props) {
       setCurrentScore(currentScore + 1);
       setClickedCards([...clickedCards, name]);
     }
+    shuffleCards();
   };
 
   return (
     <>
-      <p>Score: {currentScore}</p>
+      <p>
+        Score: {currentScore} High Score: {highScore}
+      </p>
       <div className="flex gap-4 flex-wrap w-3/4">
-        {props.cardList.map((prop) => {
+        {shuffledCardList.map((prop) => {
           return (
             <Card
               key={prop.name}
