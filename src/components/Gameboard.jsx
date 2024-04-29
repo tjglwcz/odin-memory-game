@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Card from "./Card";
+
 export default function Gameboard(props) {
   const [clickedCards, setClickedCards] = useState([]);
   const [shuffledCardList, setShuffledCardList] = useState([]);
   const [currentScore, setCurrentScore] = useState(0);
-  const [highScore, setHighScore] = useState(0);
+  const [highScore, setHighScore] = useState(
+    () => localStorage.getItem("highScore") || 0
+  );
 
   useEffect(() => {
     shuffleCards();
   }, [props.cardList]);
+
+  useEffect(() => {
+    localStorage.setItem("highScore", highScore);
+  }, [highScore]);
 
   const shuffleCards = () => {
     const shuffledList = [...props.cardList].sort(() => Math.random() - 0.5);
@@ -34,7 +41,7 @@ export default function Gameboard(props) {
       <p>
         Score: {currentScore} High Score: {highScore}
       </p>
-      <div className="flex gap-4 flex-wrap w-3/4">
+      <div className="flex gap-4 flex-wrap w-3/4 p-4">
         {shuffledCardList.map((prop) => {
           return (
             <Card
