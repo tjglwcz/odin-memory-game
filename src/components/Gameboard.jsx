@@ -39,8 +39,8 @@ export default function Gameboard(props) {
           return (
             <Card
               key={prop.name}
+              image={prop.image}
               name={prop.name}
-              description={prop.description}
               onClick={handleClick}
             />
           );
