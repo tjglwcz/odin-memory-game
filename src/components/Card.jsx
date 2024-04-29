@@ -3,11 +3,10 @@ import { useState } from "react";
 import Tilt from "react-parallax-tilt";
 
 export default function Card(props) {
-  const [isClicked, setIsClicked] = useState(false);
-
   const handleClick = () => {
-    setIsClicked(true);
+    props.onClick(props.name);
   };
+
   return (
     <Tilt>
       <div
